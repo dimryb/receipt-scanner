@@ -3,6 +3,7 @@ package space.rybakov.qr
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import me.dm7.barcodescanner.zbar.Result
 import me.dm7.barcodescanner.zbar.ZBarScannerView
 
@@ -27,7 +28,7 @@ class ScannerActivity : AppCompatActivity(), ZBarScannerView.ResultHandler {
 
     override fun handleResult(result: Result?) {
         Log.d("MyLog", "Result: ${result?.contents}")
-        //intent.putExtra("scannerResult", result?.contents)
+        Toast.makeText(this, "Result: ${result?.contents}", Toast.LENGTH_LONG).show()
         finish()
     }
 }
