@@ -1,7 +1,12 @@
 package space.rybakov.qr
 
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -25,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     var counter: Int = 0
     var scannerIntent: Intent? = null
     private lateinit var pLauncher: ActivityResultLauncher<Array<String>>
+    lateinit var sManager: SensorManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +48,25 @@ class MainActivity : AppCompatActivity() {
         bScanner?.setOnClickListener{
             checkCameraPermission()
         }
+        registerSensorAccelerometer()
+    }
+
+    private fun registerSensorAccelerometer(){
+        val tvSensor = findViewById<TextView>(R.id.tvSensor)
+        sManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        val sensor = sManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE)
+        val sListener = object : SensorEventListener{
+            override fun onSensorChanged(sEvent: SensorEvent?) {
+                val value = sEvent?.values
+                val sData = "Гироскоп:\nX: ${value?.get(0)}\nY: ${value?.get(1)}\nZ: ${value?.get(2)}"
+                tvSensor.text = sData
+            }
+
+            override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
+                TODO("Not yet implemented")
+            }
+        }
+        sManager.registerListener(sListener, sensor, SensorManager.SENSOR_DELAY_NORMAL)
     }
 
     private fun generateQrCode(text: String){
