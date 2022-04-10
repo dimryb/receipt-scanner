@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.hardware.Sensor
+import android.hardware.Sensor.TYPE_ACCELEROMETER
+import android.hardware.Sensor.TYPE_ROTATION_VECTOR
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
@@ -30,7 +32,14 @@ class MainActivity : AppCompatActivity() {
     var counter: Int = 0
     var scannerIntent: Intent? = null
     private lateinit var pLauncher: ActivityResultLauncher<Array<String>>
+
     lateinit var sManager: SensorManager
+    var tvAngle: TextView? = null
+    var ivLevel: ImageView? = null
+    var sensorRotation: Sensor? = null
+    var sensorAccelerometer: Sensor? = null
+    var sv: SensorEventListener? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,17 +57,48 @@ class MainActivity : AppCompatActivity() {
         bScanner?.setOnClickListener{
             checkCameraPermission()
         }
-        registerSensorAccelerometer()
+
+        sManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        //registerSensorAccelerometer()
+        registerSensors()
+    }
+
+    private fun registerSensors(){
+        val tvAngle = findViewById<TextView>(R.id.tvAngle)
+        val ivLevel = findViewById<ImageView>(R.id.ivLevel)
+        val tvSensor = findViewById<TextView>(R.id.tvSensor)
+        sensorRotation = sManager.getDefaultSensor(TYPE_ACCELEROMETER)
+        sv = object : SensorEventListener{
+            override fun onSensorChanged(sEvent: SensorEvent?) {
+                val value = sEvent?.values
+                val sData = "nX: ${value?.get(0)}\nY: ${value?.get(1)}\nZ: ${value?.get(2)}"
+                tvSensor.text = sData
+            }
+
+            override fun onAccuracyChanged(sensor: Sensor?, p1: Int) {
+                //sManager.unregisterListener(sv, sensorRotation)
+
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        sManager.registerListener(sv, sensorRotation, SensorManager.SENSOR_DELAY_FASTEST)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        sManager.unregisterListener(sv)
     }
 
     private fun registerSensorAccelerometer(){
         val tvSensor = findViewById<TextView>(R.id.tvSensor)
-        sManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
-        val sensor = sManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE)
+        sensorAccelerometer = sManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
         val sListener = object : SensorEventListener{
             override fun onSensorChanged(sEvent: SensorEvent?) {
                 val value = sEvent?.values
-                val sData = "Гироскоп:\nX: ${value?.get(0)}\nY: ${value?.get(1)}\nZ: ${value?.get(2)}"
+                val sData = "nX: ${value?.get(0)}\nY: ${value?.get(1)}\nZ: ${value?.get(2)}"
                 tvSensor.text = sData
             }
 
@@ -66,7 +106,7 @@ class MainActivity : AppCompatActivity() {
                 TODO("Not yet implemented")
             }
         }
-        sManager.registerListener(sListener, sensor, SensorManager.SENSOR_DELAY_NORMAL)
+        sManager.registerListener(sListener, sensorAccelerometer, SensorManager.SENSOR_DELAY_NORMAL)
     }
 
     private fun generateQrCode(text: String){
