@@ -44,6 +44,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val menuIntent = Intent(this, MenuActivity::class.java)
+        startActivity(menuIntent)
+
         im = findViewById(R.id.imageView)
         bGenerate = findViewById(R.id.button)
         bScanner = findViewById(R.id.bScan)
