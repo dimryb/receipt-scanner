@@ -4,6 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#888F8F"
+    android:backgroundTint="#FFFFFF"
+    android:backgroundTintMode="screen"
+    android:hapticFeedbackEnabled="false"
     tools:context=".MenuActivity">
 
     <TextView
