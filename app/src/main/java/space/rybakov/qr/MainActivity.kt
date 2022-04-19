@@ -30,12 +30,8 @@ class MainActivity : AppCompatActivity() {
     var bScanner: Button? = null
     var textView: TextView? = null
     var counter: Int = 0
-    var scannerIntent: Intent? = null
-    private lateinit var pLauncher: ActivityResultLauncher<Array<String>>
 
     lateinit var sManager: SensorManager
-    var tvAngle: TextView? = null
-    var ivLevel: ImageView? = null
     var sensorRotation: Sensor? = null
     var sensorAccelerometer: Sensor? = null
     var sv: SensorEventListener? = null
@@ -50,17 +46,12 @@ class MainActivity : AppCompatActivity() {
 
         im = findViewById(R.id.imageView)
         bGenerate = findViewById(R.id.button)
-        bScanner = findViewById(R.id.bScan)
         bGenerate?.setOnClickListener{
             generateQrCode("папуличка любимый! $counter")
             ++counter
         }
         textView = findViewById(R.id.textView)
         textView?.text = "Текст сканера"
-        registerPermissionListener()
-        bScanner?.setOnClickListener{
-            checkCameraPermission()
-        }
 
         sManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
 
@@ -135,39 +126,6 @@ class MainActivity : AppCompatActivity() {
             im?.setImageBitmap(bMap)
         }catch (e: WriterException){
 
-        }
-    }
-
-    private fun checkCameraPermission(){
-        when{
-            ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA)
-                == PackageManager.PERMISSION_GRANTED -> {
-                    Toast.makeText(this, "Camera run", Toast.LENGTH_LONG).show()
-                    scannerIntent = Intent(this, ScannerActivity::class.java)
-                    startActivity(scannerIntent)
-                }
-
-            shouldShowRequestPermissionRationale(android.Manifest.permission.CAMERA) -> {
-                // Просит дать разрешение
-                Toast.makeText(this, "We need your permission", Toast.LENGTH_LONG).show()
-            }
-            else -> {
-                //pLauncher.launch(arrayOf(Manifest.permission.CAMERA))
-                pLauncher.launch(arrayOf(android.Manifest.permission.CAMERA))
-            }
-        }
-    }
-
-    /**
-     * После запроса о разрешении
-     */
-    private fun registerPermissionListener(){
-        pLauncher = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()){
-            if(it[android.Manifest.permission.CAMERA] == true){
-                Toast.makeText(this, "Camera run", Toast.LENGTH_LONG).show()
-            } else {
-                Toast.makeText(this, "Permission denied", Toast.LENGTH_LONG).show()
-            }
         }
     }
 }
