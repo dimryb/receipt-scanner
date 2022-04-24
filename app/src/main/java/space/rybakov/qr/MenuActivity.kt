@@ -26,7 +26,7 @@ class MenuActivity : AppCompatActivity() {
         }
 
         binding.btnQrGenerator.setOnClickListener {
-
+            startActivity(Intent(this, QrGeneratorInputActivity::class.java))
         }
 
         binding.btnAccelerometer.setOnClickListener {
@@ -43,8 +43,7 @@ class MenuActivity : AppCompatActivity() {
             ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA)
                     == PackageManager.PERMISSION_GRANTED -> {
                 Toast.makeText(this, "Camera run from check", Toast.LENGTH_LONG).show()
-                val scannerIntent = Intent(this, ScannerActivity::class.java)
-                startActivity(scannerIntent)
+                startActivity(Intent(this, ScannerActivity::class.java))
             }
 
             shouldShowRequestPermissionRationale(android.Manifest.permission.CAMERA) -> {

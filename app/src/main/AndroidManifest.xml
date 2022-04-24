@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Qr">
         <activity
+            android:name=".QrGeneratorInputActivity"
+            android:exported="false" />
+        <activity
+            android:name=".QrGeneratorActivity"
+            android:exported="false" />
+        <activity
             android:name=".ScannerResultActivity"
             android:exported="false" />
         <activity
