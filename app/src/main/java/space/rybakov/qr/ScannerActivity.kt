@@ -1,5 +1,6 @@
 package space.rybakov.qr
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -28,7 +29,12 @@ class ScannerActivity : AppCompatActivity(), ZBarScannerView.ResultHandler {
 
     override fun handleResult(result: Result?) {
         Log.d("MyLog", "Result: ${result?.contents}")
-        Toast.makeText(this, "Result: ${result?.contents}", Toast.LENGTH_LONG).show()
+        //Toast.makeText(this, "Result: ${result?.contents}", Toast.LENGTH_LONG).show()
+
+        val scannerResultIntent = Intent(this, ScannerResultActivity::class.java)
+        scannerResultIntent.putExtra("result", "${result?.contents}");
+        startActivity(scannerResultIntent)
+
         finish()
     }
 }
