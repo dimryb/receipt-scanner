@@ -26,10 +26,6 @@ import java.util.jar.Manifest
 
 class MainActivity : AppCompatActivity() {
     var im: ImageView? = null
-    var bGenerate: Button? = null
-    var bScanner: Button? = null
-    var textView: TextView? = null
-    var counter: Int = 0
 
     lateinit var sManager: SensorManager
     var sensorRotation: Sensor? = null
@@ -40,18 +36,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         val menuIntent = Intent(this, MenuActivity::class.java)
         startActivity(menuIntent)
-
-        im = findViewById(R.id.imageView)
-        bGenerate = findViewById(R.id.button)
-        bGenerate?.setOnClickListener{
-            generateQrCode("папуличка любимый! $counter")
-            ++counter
-        }
-        textView = findViewById(R.id.textView)
-        textView?.text = "Текст сканера"
 
         sManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
 
@@ -117,15 +103,5 @@ class MainActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         sManager.unregisterListener(sv)
-    }
-
-    private fun generateQrCode(text: String){
-        val qrGenerator = QRGEncoder(text, null, QRGContents.Type.TEXT, 600)
-        try {
-            val bMap = qrGenerator.encodeAsBitmap()
-            im?.setImageBitmap(bMap)
-        }catch (e: WriterException){
-
-        }
     }
 }
