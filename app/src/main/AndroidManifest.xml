@@ -12,22 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Qr">
         <activity
-            android:name=".presentation.QrGeneratorInputActivity"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.QrGeneratorActivity"
-            android:exported="false" />
-        <activity
             android:name=".presentation.ScannerResultActivity"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.MenuActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.ScannerActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.MainActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
