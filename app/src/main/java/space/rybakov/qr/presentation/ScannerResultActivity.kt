@@ -1,4 +1,4 @@
-package space.rybakov.qr
+package space.rybakov.qr.presentation
 
 import android.annotation.SuppressLint
 import android.os.Bundle

@@ -1,4 +1,4 @@
-package space.rybakov.qr
+package space.rybakov.qr.presentation
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
