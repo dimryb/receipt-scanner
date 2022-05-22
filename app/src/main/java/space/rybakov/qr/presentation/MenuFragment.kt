@@ -61,7 +61,10 @@ class MenuFragment : Fragment() {
     }
 
     private fun launchAccelerometerFragment() {
-
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.main_container, AccelerometerFragment.newInstance())
+            .addToBackStack(AccelerometerFragment.NAME)
+            .commit()
     }
 
     private fun launchLevelFragment() {
