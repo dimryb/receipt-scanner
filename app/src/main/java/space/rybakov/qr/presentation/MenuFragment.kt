@@ -10,6 +10,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import space.rybakov.qr.R
 import space.rybakov.qr.databinding.FragmentMenuBinding
 
@@ -47,31 +48,27 @@ class MenuFragment : Fragment() {
     }
 
     private fun launchScannerFragment() {
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.main_container, ScannerFragment.newInstance())
-            .addToBackStack(ScannerFragment.NAME)
-            .commit()
+        findNavController().navigate(
+            MenuFragmentDirections.actionMenuFragmentToScannerFragment()
+        )
     }
 
     private fun launchGeneratorFragment() {
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.main_container, TextInputFragment.newInstance())
-            .addToBackStack(TextInputFragment.NAME)
-            .commit()
+        findNavController().navigate(
+            MenuFragmentDirections.actionMenuFragmentToTextInputFragment()
+        )
     }
 
     private fun launchAccelerometerFragment() {
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.main_container, AccelerometerFragment.newInstance())
-            .addToBackStack(AccelerometerFragment.NAME)
-            .commit()
+        findNavController().navigate(
+            MenuFragmentDirections.actionMenuFragmentToAccelerometerFragment()
+        )
     }
 
     private fun launchLevelFragment() {
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.main_container, LevelFragment.newInstance())
-            .addToBackStack(LevelFragment.NAME)
-            .commit()
+        findNavController().navigate(
+            MenuFragmentDirections.actionMenuFragmentToLevelFragment()
+        )
     }
 
     override fun onDestroyView() {
