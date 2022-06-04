@@ -52,19 +52,8 @@ class LevelFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        viewModel.rotationX.observe(viewLifecycleOwner) {
-            binding.tvRotationX.text = formattedRotation("X", it)
+        viewModel.rotation.observe(viewLifecycleOwner) {
+            binding.rotation = it
         }
-        viewModel.rotationY.observe(viewLifecycleOwner) {
-            binding.tvRotationY.text = formattedRotation("Y", it)
-        }
-        viewModel.rotationZ.observe(viewLifecycleOwner) {
-            binding.tvRotationZ.text = formattedRotation("Z", it)
-            binding.ivLevel.rotation = -it;
-        }
-    }
-
-    private fun formattedRotation(name: String, rotation: Float): String {
-        return String.format("%s: %.1f°", name, rotation)
     }
 }

@@ -9,6 +9,7 @@ import android.hardware.SensorManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import space.rybakov.qr.domain.Rotation
 
 class LevelViewModel(
     private val application: Application,
@@ -24,17 +25,9 @@ class LevelViewModel(
 
     private var sensorEventListener: SensorEventListener? = null
 
-    private val _rotationX = MutableLiveData<Float>()
-    val rotationX: LiveData<Float>
-        get() = _rotationX
-
-    private val _rotationY = MutableLiveData<Float>()
-    val rotationY: LiveData<Float>
-        get() = _rotationY
-
-    private val _rotationZ = MutableLiveData<Float>()
-    val rotationZ: LiveData<Float>
-        get() = _rotationZ
+    private val _rotation = MutableLiveData<Rotation>()
+    val rotation: LiveData<Rotation>
+        get() = _rotation
 
     fun registerSensors(){
         sensorEventListener = object : SensorEventListener {
@@ -54,10 +47,11 @@ class LevelViewModel(
                         for(i in 0..3 ){
                             orientations[i] = Math.toDegrees(orientations[i].toDouble()).toFloat()
                         }
-
-                        _rotationX.value = orientations[0]
-                        _rotationY.value = orientations[1]
-                        _rotationZ.value = orientations[2]
+                        _rotation.value = Rotation(
+                            X = orientations[0],
+                            Y = orientations[1],
+                            Z = orientations[2],
+                        )
                     }
                 }
             }
