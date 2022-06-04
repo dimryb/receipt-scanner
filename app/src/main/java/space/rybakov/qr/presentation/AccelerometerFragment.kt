@@ -15,7 +15,6 @@ import space.rybakov.qr.databinding.FragmentAccelerometerBinding
 class AccelerometerFragment : Fragment() {
 
     private lateinit var sManager: SensorManager
-    private var sensorRotation: Sensor? = null
     private var sensorAccelerometer: Sensor? = null
     private var sensorEventListener: SensorEventListener? = null
 
@@ -68,14 +67,6 @@ class AccelerometerFragment : Fragment() {
 
             override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
             }
-        }
-    }
-
-    companion object {
-        const val NAME = "AccelerometerFragment"
-
-        fun newInstance(): AccelerometerFragment {
-            return AccelerometerFragment()
         }
     }
 }

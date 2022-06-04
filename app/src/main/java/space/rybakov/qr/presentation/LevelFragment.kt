@@ -82,12 +82,4 @@ class LevelFragment : Fragment() {
             }
         }
     }
-
-    companion object {
-        const val NAME = "LevelFragment"
-
-        fun newInstance(): LevelFragment {
-            return LevelFragment()
-        }
-    }
 }
