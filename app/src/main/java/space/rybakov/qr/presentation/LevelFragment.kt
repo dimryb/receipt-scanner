@@ -2,7 +2,6 @@ package space.rybakov.qr.presentation
 
 import android.content.Context
 import android.hardware.Sensor
-import android.hardware.Sensor.TYPE_ACCELEROMETER
 import android.hardware.Sensor.TYPE_ROTATION_VECTOR
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
@@ -11,7 +10,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import space.rybakov.qr.databinding.FragmentLevelBinding
 
@@ -19,7 +17,6 @@ class LevelFragment : Fragment() {
 
     private lateinit var sManager: SensorManager
     private var sensorRotation: Sensor? = null
-    private var sensorAccelerometer: Sensor? = null
     private var sensorEventListener: SensorEventListener? = null
 
     private var _binding: FragmentLevelBinding? = null

@@ -46,7 +46,7 @@ class QrGeneratorFragment : Fragment() {
         val qrGenerator = QRGEncoder(text, null, QRGContents.Type.TEXT, 600)
         try {
             val bMap = qrGenerator.encodeAsBitmap()
-            binding.ivQrGenerator?.setImageBitmap(bMap)
+            binding.ivQrGenerator.setImageBitmap(bMap)
         } catch (e: WriterException) {
 
         }
