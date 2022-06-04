@@ -8,6 +8,8 @@
     tools:context=".presentation.LevelFragment"
     >
 
+
+
     <ImageView
         android:id="@+id/ivLevel"
         android:layout_width="400dp"
@@ -20,16 +22,40 @@
         app:srcCompat="@color/design_default_color_error" />
 
     <TextView
-        android:id="@+id/tvAngle"
+        android:id="@+id/tvRotationX"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="rotation"
+        android:text="rotationX"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvRotationY"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="rotationY"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvRotationX" />
+
+    <TextView
+        android:id="@+id/tvRotationZ"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="rotationZ"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvRotationY" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
