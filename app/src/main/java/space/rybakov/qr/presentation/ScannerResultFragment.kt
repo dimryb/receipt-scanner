@@ -1,9 +1,15 @@
 package space.rybakov.qr.presentation
 
+import android.content.Intent
+import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.URLUtil
+import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import space.rybakov.qr.databinding.FragmentScannerResultBinding
@@ -21,8 +27,23 @@ class ScannerResultFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentScannerResultBinding.inflate(inflater, container, false)
-        binding.tvScannerResult.text = args.text
+
+        resultView()
+
         return binding.root
+    }
+
+    private fun resultView(){
+        val textViewResult : TextView = binding.tvScannerResult
+        if (URLUtil.isNetworkUrl(args.text)){
+            // Todo: переделать на material design
+            textViewResult.setTextColor(Color.BLUE)
+            textViewResult.setOnClickListener {
+                Toast.makeText(context, "Click: ${args.text}", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(args.text)))
+            }
+        }
+        textViewResult.text = args.text
     }
 
     override fun onDestroyView() {
