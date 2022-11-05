@@ -1,14 +1,9 @@
 <resources>
     <string name="app_name">Qrer</string>
-    <string name="tvScannerResult">TextView</string>
     <string name="tvMenu">Меню</string>
-    <string name="btnScanner">QR cканер</string>
-    <string name="btnQrGenerator">QR генератор</string>
-    <string name="btnAccelerometer">Акселерометр</string>
-    <string name="btnGyroscope">Уровень/гироскоп</string>
-    <string name="etInput">Введите текст</string>
-    <string name="btnGenerateQr">Сгенерировать QR</string>
-    <string name="Z">Z: %.1f°</string>
-    <string name="Y">Y: %.1f°</string>
-    <string name="X">X: %.1f°</string>
+    <string name="btnScanner">QR scanner</string>
+    <string name="btnQrGenerator">QR generator</string>
+    <string name="etInput">Enter text</string>
+    <string name="btnGenerateQr">Scan QR</string>
+    <string name="tvScannerResult">Result</string>
 </resources>
