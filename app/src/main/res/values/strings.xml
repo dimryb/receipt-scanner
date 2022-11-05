@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Super level</string>
+    <string name="app_name">Qrer</string>
     <string name="tvScannerResult">TextView</string>
     <string name="tvMenu">Меню</string>
-    <string name="btnScanner">Сканер</string>
+    <string name="btnScanner">QR cканер</string>
     <string name="btnQrGenerator">QR генератор</string>
     <string name="btnAccelerometer">Акселерометр</string>
     <string name="btnGyroscope">Уровень/гироскоп</string>

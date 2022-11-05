@@ -11,7 +11,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import space.rybakov.qr.R
 import space.rybakov.qr.databinding.FragmentMenuBinding
 
 class MenuFragment : Fragment() {
@@ -42,8 +41,6 @@ class MenuFragment : Fragment() {
         with(binding) {
             btnScanner.setOnClickListener { checkCameraPermission() }
             btnQrGenerator.setOnClickListener { launchGeneratorFragment() }
-            btnAccelerometer.setOnClickListener { launchAccelerometerFragment() }
-            btnGyroscope.setOnClickListener { launchLevelFragment() }
         }
     }
 
@@ -56,18 +53,6 @@ class MenuFragment : Fragment() {
     private fun launchGeneratorFragment() {
         findNavController().navigate(
             MenuFragmentDirections.actionMenuFragmentToTextInputFragment()
-        )
-    }
-
-    private fun launchAccelerometerFragment() {
-        findNavController().navigate(
-            MenuFragmentDirections.actionMenuFragmentToAccelerometerFragment()
-        )
-    }
-
-    private fun launchLevelFragment() {
-        findNavController().navigate(
-            MenuFragmentDirections.actionMenuFragmentToLevelFragment()
         )
     }
 
@@ -106,13 +91,5 @@ class MenuFragment : Fragment() {
                     Toast.makeText(requireActivity(), "Permission denied", Toast.LENGTH_LONG).show()
                 }
             }
-    }
-
-    companion object {
-        const val NAME = "MenuFragment"
-
-        fun newInstance(): MenuFragment {
-            return MenuFragment()
-        }
     }
 }
