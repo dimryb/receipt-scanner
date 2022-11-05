@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Qrer</string>
+    <string name="tvScannerResult">Результат</string>
+    <string name="tvMenu">Меню</string>
+    <string name="btnScanner">QR cканер</string>
+    <string name="btnQrGenerator">QR генератор</string>
+    <string name="etInput">Введите текст</string>
+    <string name="btnGenerateQr">Сгенерировать QR</string>
+</resources>
