@@ -23,8 +23,7 @@ class ScannerResultFragment : Fragment() {
         get() = _binding ?: throw RuntimeException("FragmentScannerResultBinding == null")
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentScannerResultBinding.inflate(inflater, container, false)
 
@@ -43,7 +42,17 @@ class ScannerResultFragment : Fragment() {
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(args.text)))
             }
         }
-        textViewResult.text = args.text
+
+        textViewResult.text = ReceiptParser.parse(args.text)?.let { receipt ->
+            """Это чек:
+            |Дата и время: ${receipt.dataTime}
+            |Сумма: ${receipt.summa}
+            |ФН: ${receipt.fn}
+            |ФД: ${receipt.fd}
+            |ФП: ${receipt.fp}
+            |""".trimMargin()
+        } ?: "Это не чек:\n${args.text}"
+
     }
 
     override fun onDestroyView() {
