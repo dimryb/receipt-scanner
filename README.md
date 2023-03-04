@@ -1,2 +1,2 @@
-# Qr
+# Receipt Scanner
 Сканер кассовых чеков
