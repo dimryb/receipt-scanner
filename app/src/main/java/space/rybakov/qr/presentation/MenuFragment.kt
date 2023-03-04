@@ -40,19 +40,12 @@ class MenuFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
             btnScanner.setOnClickListener { checkCameraPermission() }
-            btnQrGenerator.setOnClickListener { launchGeneratorFragment() }
         }
     }
 
     private fun launchScannerFragment() {
         findNavController().navigate(
             MenuFragmentDirections.actionMenuFragmentToScannerFragment()
-        )
-    }
-
-    private fun launchGeneratorFragment() {
-        findNavController().navigate(
-            MenuFragmentDirections.actionMenuFragmentToTextInputFragment()
         )
     }
 
