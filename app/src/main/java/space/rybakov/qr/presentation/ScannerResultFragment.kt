@@ -45,7 +45,7 @@ class ScannerResultFragment : Fragment() {
 
         textViewResult.text = ReceiptParser.parse(args.text)?.let { receipt ->
             """Это чек:
-            |Дата и время: ${receipt.dataTime}
+            |Дата и время: ${receipt.dateTime}
             |Сумма: ${receipt.summa}
             |ФН: ${receipt.fn}
             |ФД: ${receipt.fd}

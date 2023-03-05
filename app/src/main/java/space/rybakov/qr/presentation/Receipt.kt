@@ -3,7 +3,7 @@ package space.rybakov.qr.presentation
 import kotlinx.datetime.LocalDateTime
 
 data class Receipt(
-    val dataTime: LocalDateTime? = null,
+    val dateTime: LocalDateTime,
     val summa: Double,
     val fn: Long,
     val fd: Long,
