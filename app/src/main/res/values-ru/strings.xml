@@ -4,4 +4,6 @@
     <string name="tvScannerResult">Результат</string>
     <string name="tvMenu">Меню</string>
     <string name="btnScanner">Сканировать чек</string>
+    <string name="btnSend">Отправить</string>
+    <string name="btnBrowse">Перейти</string>
 </resources>

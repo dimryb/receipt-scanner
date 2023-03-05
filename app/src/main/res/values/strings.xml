@@ -3,4 +3,6 @@
     <string name="tvMenu">Меню</string>
     <string name="btnScanner">Receipt scanner</string>
     <string name="tvScannerResult">Result</string>
+    <string name="btnSend">Send</string>
+    <string name="btnBrowse">Browse</string>
 </resources>
