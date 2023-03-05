@@ -13,15 +13,6 @@
         <action
             android:id="@+id/action_menuFragment_to_scannerFragment"
             app:destination="@id/scannerFragment" />
-        <action
-            android:id="@+id/action_menuFragment_to_textInputFragment"
-            app:destination="@id/textInputFragment" />
-        <action
-            android:id="@+id/action_menuFragment_to_accelerometerFragment"
-            app:destination="@id/accelerometerFragment" />
-        <action
-            android:id="@+id/action_menuFragment_to_levelFragment"
-            app:destination="@id/levelFragment" />
     </fragment>
     <fragment
         android:id="@+id/scannerFragment"
@@ -41,32 +32,4 @@
             android:name="text"
             app:argType="string" />
     </fragment>
-    <fragment
-        android:id="@+id/textInputFragment"
-        android:name="space.rybakov.qr.presentation.TextInputFragment"
-        android:label="fragment_text_input"
-        tools:layout="@layout/fragment_text_input" >
-        <action
-            android:id="@+id/action_textInputFragment_to_qrGeneratorFragment"
-            app:destination="@id/qrGeneratorFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/qrGeneratorFragment"
-        android:name="space.rybakov.qr.presentation.QrGeneratorFragment"
-        android:label="fragment_qr_generator"
-        tools:layout="@layout/fragment_qr_generator" >
-        <argument
-            android:name="text"
-            app:argType="string" />
-    </fragment>
-    <fragment
-        android:id="@+id/accelerometerFragment"
-        android:name="space.rybakov.qr.presentation.AccelerometerFragment"
-        android:label="fragment_accelerometer"
-        tools:layout="@layout/fragment_accelerometer" />
-    <fragment
-        android:id="@+id/levelFragment"
-        android:name="space.rybakov.qr.presentation.LevelFragment"
-        android:label="fragment_level"
-        tools:layout="@layout/fragment_level" />
 </navigation>
