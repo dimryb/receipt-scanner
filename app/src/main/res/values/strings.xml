@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Qrer</string>
+    <string name="app_name">QR receipt scanner</string>
     <string name="tvMenu">Меню</string>
     <string name="btnScanner">Receipt scanner</string>
     <string name="tvScannerResult">Result</string>
