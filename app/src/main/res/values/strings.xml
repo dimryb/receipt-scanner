@@ -5,4 +5,6 @@
     <string name="tvScannerResult">Result</string>
     <string name="btnSend">Send</string>
     <string name="btnBrowse">Browse</string>
+    <string name="btnInput">Enter manually</string>
+    <string name="btnAgain">Again</string>
 </resources>

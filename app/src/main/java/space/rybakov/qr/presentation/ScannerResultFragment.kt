@@ -11,6 +11,7 @@ import android.webkit.URLUtil
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import space.rybakov.qr.R
 import space.rybakov.qr.databinding.FragmentScannerResultBinding
@@ -86,6 +87,11 @@ class ScannerResultFragment : Fragment() {
                 //intent.setPackage("Telegram")
                 intent.putExtra(Intent.EXTRA_TEXT, "Чек: ${textViewResult.text}")
                 startActivity(Intent.createChooser(intent, "Share with"))
+            }
+
+            binding.again.setOnClickListener {
+                val navController = findNavController()
+                navController.popBackStack(R.id.menuFragment, false)
             }
         }
 

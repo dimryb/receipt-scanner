@@ -6,4 +6,6 @@
     <string name="btnScanner">Сканировать чек</string>
     <string name="btnSend">Отправить</string>
     <string name="btnBrowse">Перейти</string>
+    <string name="btnInput">Ввести вручную</string>
+    <string name="btnAgain">Еще раз</string>
 </resources>
