@@ -46,15 +46,6 @@ class ScannerResultFragment : Fragment() {
             ContentType.Link -> result.text
             ContentType.Receipt -> {
                 result.let {
-//                    """
-//                        |Дата: ${String.format("%02d.%02d.%04d", receipt.dateTime.dayOfMonth, receipt.dateTime.monthNumber, receipt.dateTime.year)}
-//                        |Время: ${String.format("%02d:%02d", receipt.dateTime.hour, receipt.dateTime.minute)}
-//                        |Сумма: ${receipt.summa}
-//                        |ФН: ${receipt.fn}
-//                        |ФД: ${receipt.fd}
-//                        |ФП: ${receipt.fp}
-//                        |""".trimMargin()
-
                     """
                         |Дата: ${result.dateString}
                         |Время: ${result.timeString}

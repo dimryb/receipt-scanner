@@ -34,14 +34,18 @@ class EnterFragment : Fragment() {
     private fun share() {
         val textDate = binding.editTextDate.text.toString()
         val textTime = binding.editTextTime.text.toString()
+        val invalidDate = !validDate(textDate)
+        val invalidTime = !validTime(textTime)
 
-        if (!validDate(textDate)) {
+        if (invalidDate) {
             binding.editTextDate.error = getString(R.string.enter_correct_date)
         }
 
-        if (!validTime(textTime)) {
-            binding.editTextDate.error = getString(R.string.enter_correct_time)
+        if (invalidTime) {
+            binding.editTextTime.error = getString(R.string.enter_correct_time)
         }
+
+        if (invalidDate || invalidTime) return
 
         val receipt = ReceiptResult(
             type = ContentType.Receipt,
