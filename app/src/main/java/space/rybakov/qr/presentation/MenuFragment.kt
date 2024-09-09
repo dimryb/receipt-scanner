@@ -40,12 +40,19 @@ class MenuFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
             btnScanner.setOnClickListener { checkCameraPermission() }
+            btnInput.setOnClickListener { launchEnterFragment() }
         }
     }
 
     private fun launchScannerFragment() {
         findNavController().navigate(
             MenuFragmentDirections.actionMenuFragmentToScannerFragment()
+        )
+    }
+
+    private fun launchEnterFragment() {
+        findNavController().navigate(
+            MenuFragmentDirections.actionMenuFragmentToEnterFragment()
         )
     }
 
@@ -67,6 +74,7 @@ class MenuFragment : Fragment() {
                 Toast.makeText(requireActivity(), "We need your permission", Toast.LENGTH_LONG)
                     .show()
             }
+
             else -> {
                 pLauncher.launch(arrayOf(android.Manifest.permission.CAMERA))
             }

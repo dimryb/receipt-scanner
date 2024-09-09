@@ -8,4 +8,11 @@
     <string name="btnBrowse">Перейти</string>
     <string name="btnInput">Ввести вручную</string>
     <string name="btnAgain">Еще раз</string>
+    <string name="enter_date">ДД.ММ.ГГГГ</string>
+    <string name="enter_time">Введите время</string>
+    <string name="enter_price">Введите сумму</string>
+    <string name="enter_fn">Введите ФН</string>
+    <string name="enter_fd">Введите ФД</string>
+    <string name="enter_correct_date">Введите корректную дату в формате ДД.ММ.ГГГГ</string>
+    <string name="enter_correct_time">Введите корректное время в формате ЧЧ:ММ</string>
 </resources>

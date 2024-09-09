@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_menuFragment_to_scannerFragment"
             app:destination="@id/scannerFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_enterFragment"
+            app:destination="@id/enterFragment" />
     </fragment>
     <fragment
         android:id="@+id/scannerFragment"
@@ -29,7 +32,16 @@
         android:label="fragment_scanner_result"
         tools:layout="@layout/fragment_scanner_result" >
         <argument
-            android:name="text"
-            app:argType="string" />
+            android:name="result"
+            app:argType="space.rybakov.qr.presentation.ReceiptResult" />
+    </fragment>
+    <fragment
+        android:id="@+id/enterFragment"
+        android:name="space.rybakov.qr.presentation.EnterFragment"
+        android:label="fragment_enter"
+        tools:layout="@layout/fragment_enter" >
+        <action
+            android:id="@+id/action_enterFragment_to_scannerResultFragment"
+            app:destination="@id/scannerResultFragment" />
     </fragment>
 </navigation>

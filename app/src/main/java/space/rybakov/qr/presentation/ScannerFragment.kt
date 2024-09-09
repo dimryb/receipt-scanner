@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.URLUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import me.dm7.barcodescanner.zbar.Result
@@ -40,8 +41,14 @@ class ScannerFragment : Fragment(), ZBarScannerView.ResultHandler {
     }
 
     private fun launchScannerResult(text: String) {
+        val result = if (URLUtil.isNetworkUrl(text)) {
+            ReceiptResult(type = ContentType.Link, text = text)
+        } else {
+            ReceiptParser.parse2(text) ?: ReceiptResult(type = ContentType.Unknown, text = text)
+        }
+
         findNavController().navigate(
-            ScannerFragmentDirections.actionScannerFragmentToScannerResultFragment(text)
+            ScannerFragmentDirections.actionScannerFragmentToScannerResultFragment(result)
         )
     }
 }

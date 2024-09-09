@@ -7,4 +7,11 @@
     <string name="btnBrowse">Browse</string>
     <string name="btnInput">Enter manually</string>
     <string name="btnAgain">Again</string>
+    <string name="enter_date">Enter date</string>
+    <string name="enter_time">Enter time</string>
+    <string name="enter_price">Enter price</string>
+    <string name="enter_fn">Enter FN</string>
+    <string name="enter_fd">Enter FD</string>
+    <string name="enter_correct_date">Enter correct date in format DD.MM.YYYY</string>
+    <string name="enter_correct_time">Enter correct time in format HH:mm</string>
 </resources>

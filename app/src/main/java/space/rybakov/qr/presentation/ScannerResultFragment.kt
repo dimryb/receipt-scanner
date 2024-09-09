@@ -2,12 +2,10 @@ package space.rybakov.qr.presentation
 
 import android.content.Intent
 import android.net.Uri
-import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.URLUtil
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -29,22 +27,14 @@ class ScannerResultFragment : Fragment() {
     ): View {
         _binding = FragmentScannerResultBinding.inflate(inflater, container, false)
 
-        resultView()
+        resultView(args.result)
 
         return binding.root
     }
 
-    private fun resultView() {
+    private fun resultView(result: ReceiptResult) {
         val textViewResult: TextView = binding.tvScannerResult
-
-        val receipt = ReceiptParser.parse(args.text)
-        val type = if (URLUtil.isNetworkUrl(args.text)) {
-            ContentType.Link
-        } else if (receipt != null) {
-            ContentType.Receipt
-        } else {
-            ContentType.Unknown
-        }
+        val type = result.type
 
         binding.textViewTitle.text = when (type) {
             ContentType.Link -> "Это ссылка"
@@ -53,34 +43,43 @@ class ScannerResultFragment : Fragment() {
         }
 
         textViewResult.text = when (type) {
-            ContentType.Link -> args.text
+            ContentType.Link -> result.text
             ContentType.Receipt -> {
-                receipt?.let {
-                    """                     
-                        |Дата: ${String.format("%02d.%02d.%04d", receipt.dateTime.dayOfMonth, receipt.dateTime.monthNumber, receipt.dateTime.year)}
-                        |Время: ${String.format("%02d:%02d", receipt.dateTime.hour, receipt.dateTime.minute)}
-                        |Сумма: ${receipt.summa}
-                        |ФН: ${receipt.fn}
-                        |ФД: ${receipt.fd}
-                        |ФП: ${receipt.fp}
+                result.let {
+//                    """
+//                        |Дата: ${String.format("%02d.%02d.%04d", receipt.dateTime.dayOfMonth, receipt.dateTime.monthNumber, receipt.dateTime.year)}
+//                        |Время: ${String.format("%02d:%02d", receipt.dateTime.hour, receipt.dateTime.minute)}
+//                        |Сумма: ${receipt.summa}
+//                        |ФН: ${receipt.fn}
+//                        |ФД: ${receipt.fd}
+//                        |ФП: ${receipt.fp}
+//                        |""".trimMargin()
+
+                    """
+                        |Дата: ${result.dateString}
+                        |Время: ${result.timeString}
+                        |Сумма: ${result.summa}
+                        |ФН: ${result.fn}
+                        |ФД: ${result.fd}
+                        |ФП: ${result.fp}
                         |""".trimMargin()
                 }
             }
-            else -> args.text
+            else -> result.text
         }
 
         if (type == ContentType.Link) {
             textViewResult.setTextColor(resources.getColor(R.color.purple_500, null))
             textViewResult.setOnClickListener {
-                Toast.makeText(context, "Click: ${args.text}", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(args.text)))
+                Toast.makeText(context, "Click: ${result.text}", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(result.text)))
             }
             binding.browse.setOnClickListener {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(args.text)))
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(result.text)))
             }
         }
 
-        if (type == ContentType.Receipt){
+        if (type == ContentType.Receipt) {
             binding.share.setOnClickListener {
                 val intent = Intent(Intent.ACTION_SEND)
                 intent.setType("text/plain")
@@ -88,11 +87,11 @@ class ScannerResultFragment : Fragment() {
                 intent.putExtra(Intent.EXTRA_TEXT, "Чек: ${textViewResult.text}")
                 startActivity(Intent.createChooser(intent, "Share with"))
             }
+        }
 
-            binding.again.setOnClickListener {
-                val navController = findNavController()
-                navController.popBackStack(R.id.menuFragment, false)
-            }
+        binding.again.setOnClickListener {
+            val navController = findNavController()
+            navController.popBackStack(R.id.menuFragment, false)
         }
 
         binding.browse.visibility = if (type == ContentType.Link) View.VISIBLE else View.GONE
