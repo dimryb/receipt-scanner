@@ -4,26 +4,6 @@ import kotlinx.datetime.LocalDateTime
 
 
 object ReceiptParser {
-    fun parse(str: String): Receipt? {
-        val map = str.split('&').map { param ->
-            val pair = param.split('=')
-            if (pair.size != 2) return null
-            pair[0] to pair[1]
-        }.toMap()
-        try {
-            return Receipt(
-                dateTime = map["t"]?.parseDateTime().let { it ?: return null },
-                summa = map["s"]?.toDouble() ?: return null,
-                fn = map["fn"]?.toLong() ?: return null,
-                fd = map["i"]?.toLong() ?: return null,
-                fp = map["fp"]?.toLong() ?: return null,
-                n = map["n"]?.toInt() ?: return null
-            )
-        } catch (e: Exception) {
-            return null
-        }
-    }
-
     fun parse2(str: String): ReceiptResult? {
         val map = str.split('&').map { param ->
             val pair = param.split('=')
