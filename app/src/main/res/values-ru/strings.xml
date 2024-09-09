@@ -15,4 +15,5 @@
     <string name="enter_fd">Введите ФД</string>
     <string name="enter_correct_date">Введите корректную дату в формате ДД.ММ.ГГГГ</string>
     <string name="enter_correct_time">Введите корректное время в формате ЧЧ:ММ</string>
+    <string name="enter_fp">Введите ФП</string>
 </resources>

@@ -14,4 +14,5 @@
     <string name="enter_fd">Enter FD</string>
     <string name="enter_correct_date">Enter correct date in format DD.MM.YYYY</string>
     <string name="enter_correct_time">Enter correct time in format HH:mm</string>
+    <string name="enter_fp">Enter FP</string>
 </resources>

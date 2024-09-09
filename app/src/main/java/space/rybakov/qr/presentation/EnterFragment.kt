@@ -8,9 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import space.rybakov.qr.R
 import space.rybakov.qr.databinding.FragmentEnterBinding
-import java.sql.Time
 import java.text.SimpleDateFormat
-import java.util.Date
 import java.util.Locale
 
 
@@ -34,44 +32,54 @@ class EnterFragment : Fragment() {
     }
 
     private fun share() {
-        val date = getDate() ?: return
-        val time = getTime() ?: return
-        val price = binding.editPrice.text.toString().toInt()
-        val fn = binding.editFN.text.toString().toInt()
-        val fd = binding.editFD.text.toString().toInt()
-        val fp = binding.editFP.text.toString().toInt()
+        val textDate = binding.editTextDate.text.toString()
+        val textTime = binding.editTextTime.text.toString()
 
-//        findNavController().navigate(
-//            ScannerFragmentDirections.actionEnterFragmentToScannerResultFragment(result)
-//        )
+        if (!validDate(textDate)) {
+            binding.editTextDate.error = getString(R.string.enter_correct_date)
+        }
+
+        if (!validTime(textTime)) {
+            binding.editTextDate.error = getString(R.string.enter_correct_time)
+        }
+
+        val receipt = ReceiptResult(
+            type = ContentType.Receipt,
+            dateString = textDate,
+            timeString = textTime,
+            summa = binding.editPrice.text.toString().toDouble(),
+            fn = binding.editFN.text.toString().toLong(),
+            fd = binding.editFD.text.toString().toLong(),
+            fp = binding.editFP.text.toString().toLong()
+        )
+
+        findNavController().navigate(
+            EnterFragmentDirections.actionEnterFragmentToScannerResultFragment(receipt)
+        )
     }
 
-    private fun getDate(): Date? {
-        val textDate = binding.editTextDate.text.toString()
+    private fun validDate(textDate: String): Boolean {
         val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
         dateFormat.isLenient = false
 
         return runCatching {
             dateFormat.parse(textDate)
+            true
         }.getOrElse {
-            binding.editTextDate.error = getString(R.string.enter_correct_date)
-            null
+            false
         }
     }
 
-    private fun getTime(): Time? {
-        val textTime = binding.editTextTime.text.toString()
+    private fun validTime(textTime: String): Boolean {
         val dateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
         dateFormat.isLenient = false
 
-        val date = runCatching {
+        return runCatching {
             dateFormat.parse(textTime)
+            true
         }.getOrElse {
-            binding.editTextDate.error = getString(R.string.enter_correct_time)
-            null
-        } ?: return null
-
-        return Time(date.time)
+            false
+        }
     }
 
 }

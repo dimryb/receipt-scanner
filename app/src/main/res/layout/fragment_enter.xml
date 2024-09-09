@@ -69,7 +69,7 @@
                 android:autofillHints="number"
                 android:inputType="numberDecimal|number"
                 android:maxLength="10"
-                android:hint="@string/enter_fd"/>
+                android:hint="@string/enter_fp"/>
 
             <Button
                 android:id="@+id/enterShare"
